@@ -1,4 +1,6 @@
 from database import DatabasePohon
+from pohon import Pohon
+from utils import validasi_tanggal
 
 db = DatabasePohon()
 
@@ -18,6 +20,18 @@ while True:
 
     if pilihan == "1":
         # TODO : Kerjakan disini (fitur1)
+        print("\n📥 Tambah Data Pohon")
+        jenis = input("Jenis Pohon : ")
+        lokasi = input("Tempat Penanaman Pohon : ")
+        tanggal_input = input("Tanggal Penanaman Pohon (YYYY-MM-DD) : ")
+        tanggal = validasi_tanggal(tanggal_input)
+        if tanggal is not None:
+            pohon = Pohon(jenis, lokasi, tanggal)
+            db.tambah_data_pohon(pohon)
+        else:
+            print("❌ Input tidak valid atau tanggal tidak boleh melewati hari ini.")
+
+
     elif pilihan == "2":
         # TODO : Kerjakan disini (fitur2)
         else:
